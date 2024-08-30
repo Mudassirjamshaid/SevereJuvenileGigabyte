@@ -1,37 +1,19 @@
 #include <iostream>
-using namespace std;
-
-// Base class
-class Vehicle {
-public:
-    string brand;
-
-    // Parameterized constructor
-    Vehicle(string vehicleBrand) : brand(vehicleBrand) {
-        cout << "Vehicle constructor called with brand: " << brand << endl;
-    }
-};
-
-// Derived class
-class Car : public Vehicle {
-public:
-    string model;
-
-    // Parameterized constructor
-    Car(string carBrand, string carModel) : Vehicle(carBrand), model(carModel) {
-        cout << "Car constructor called with brand: " << carBrand << " and model: " << carModel << endl;
-    }
-
-    // Overloaded constructor
-    Car(string carBrand) : Vehicle(carBrand), model("Unknown") {
-        cout << "Car overloaded constructor called with brand: " << carBrand << endl;
-    }
-};
+#include <map>
 
 int main() {
-    // Creating objects using different constructors
-    Car car1("Toyota", "Corolla");
-    Car car2("Honda");
+  // Create a map to store student names and their grades
+  std::map<std::string, int> studentGrades;
 
-    return 0;
+  // Add some students and their grades
+  studentGrades["Alice"] = 90;
+  studentGrades["Bob"] = 85;
+  studentGrades["Charlie"] = 95;
+
+  // Print the grades for each student
+  for (auto const& [name, grade] : studentGrades) {
+    std::cout << name << ": " << grade << std::endl;
+  }
+
+  return 0;
 }
