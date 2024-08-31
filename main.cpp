@@ -6,33 +6,26 @@ int main() {
     
     // create a map named student
     map <int, string> student {{1, "Denise"}, {2, "Blake"}, {3, "Courtney"}, {4, "John"}, {5, "Jennifer"}};
-    
-    // create map iterator
-    map <int, string>::iterator itr;
 
+    // create a map iterator
+    map <int, string>::iterator iter;
+    
     // display initial map values
     cout << "Initial Values:" << endl;
-
-    for(itr = student.begin(); itr != student.end(); ++itr) {
-        cout << itr->second << ", ";
+    for(iter = student.begin(); iter != student.end(); ++iter) {
+        cout << iter->second << ", ";
     }
     
     cout << endl;
     
-    // use itr iterator to point to the first map element
-    itr = student.begin();
-
-    // remove the first element
-    student.erase(itr);
-
-    // remove the element having key 4
-    student.erase(4);
+    // remove a range of elements
+    student.erase(student.find(2),student.find(5));
 
     // display final map values
     cout << "\nFinal Values:" << endl;
 
-    for(itr = student.begin(); itr != student.end(); ++itr) {
-        cout << itr->second << ", ";
+    for(iter = student.begin(); iter != student.end(); ++iter) {
+        cout << iter->second << ", ";
     }
     
     return 0;
