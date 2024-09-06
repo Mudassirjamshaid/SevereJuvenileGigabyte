@@ -1,32 +1,23 @@
 #include <iostream>
-#include <map>
+#include <thread>
+#include <mutex>
+
 using namespace std;
 
+mutex carMutax;
+void driverCar(string driverName) {
+    unique_lock<mutex> carLock(carMutax);
+  cout << driverName << " is driving." << endl;
+  this_thread::sleep_for(chrono::seconds(2)); 
+  cout << driverName << " is done driving." << endl;
+    carLock.unlock();
+}
+
 int main() {
-    
-    // create a map named student
-    map <int, string> student {{1, "Denise"}, {2, "Blake"}, {3, "Courtney"}, {4, "John"}, {5, "Jennifer"}};
+  thread t1(driverCar, "Oggy ");
+  thread t2(driverCar, "Jack ");
 
-    // create a map iterator
-    map <int, string>::iterator iter;
-    
-    // display initial map values
-    cout << "Initial Values:" << endl;
-    for(iter = student.begin(); iter != student.end(); ++iter) {
-        cout << iter->second << ", ";
-    }
-    
-    cout << endl;
-    
-    // remove a range of elements
-    student.erase(student.find(2),student.find(5));
-
-    // display final map values
-    cout << "\nFinal Values:" << endl;
-
-    for(iter = student.begin(); iter != student.end(); ++iter) {
-        cout << iter->second << ", ";
-    }
-    
-    return 0;
+  t1.join();
+  t2.join();
+  return 0;
 }
